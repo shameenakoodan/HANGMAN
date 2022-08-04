@@ -12,7 +12,7 @@ const wordLabel = document.querySelector('#character-words');
 *****************************************************************/
 //Word display
 const originalWord = "apple";
-const clue = "p";
+const clue = ['p'];
 
 /****************************************************************
                      Function Definitions
@@ -28,19 +28,23 @@ const displayLetters=(event)=>{
     const alphabetClicked = event.target.innerHTML;
     console.log(alphabetClicked);
 
-    //Find index of the character which is clicked
-    
-    //Check whether the originalWord contains the clicked alphabet
-    if(originalWord.includes(alphabetClicked)){
-       wordLabel.innerHTML += alphabetClicked;
+    //Find all the indexes of the character which is clicked
+    const indexes = getAllIndexes(originalWord,alphabetClicked);
+       console.log(indexes);       
+    //Add characters to the correct position in the clueWord if the clicked character is present
+    for(let i =0;i<indexes.length;i++){
+       clue[indexes[i]] = alphabetClicked;
+       displayClueWord();
+       console.log(clue);
     }
+    
 }
 
 //Function to find all the index of a character in the word
 //Returns an array of all the indexes where the character is present
-const getAllIndexes = (originalWord, clicked) =>{
+const getAllIndexes = (word, clicked) =>{
        let indexes = [], i = -1;
-       while ((i = arr.indexOf(val, i+1)) != -1){
+       while ((i = word.indexOf(clicked, i+1)) != -1){
            indexes.push(i);
        }
        return indexes;
