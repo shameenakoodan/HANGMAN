@@ -5,16 +5,18 @@
 const abcButtons = document.querySelectorAll('.abc-buttons');
 
 //Label for the words
-const wordLabel = document.querySelector('.character-words');
+let wordLabel;
 
 //div to display labels
 const labelDiv = document.querySelector(".flexcontainer-playarea-word");
 /****************************************************************
                      Variable Declarations
 *****************************************************************/
+//Store the words
+const fruits = ["strawberries", "raspberries", "blueberries", "kiwifruit","passionfruit","nectarines", "apricots", "peaches","plums",];
 //Word display
-const originalWord = "fantastic";
-const clue =['a'];
+const originalWord = fruits[Math.floor(Math.random() * fruits.length)];
+const clue=[];
 
 /****************************************************************
                      Function Definitions
@@ -22,42 +24,47 @@ const clue =['a'];
 
 //Function to display a word with only hints and underscores on the label
 const displayClueWord = ()=>{
-       //Generate random number 
-       const randomIndex = Math.floor(Math.random() * originalWord.length);
+       //Generate a random character to display for the clueWord
+       const randomCharacter = originalWord.charAt(Math.floor(Math.random() * originalWord.length));
 
        //Dynamically create labels for each characters in the clue word
        for (let i = 0; i < originalWord.length; i++) {
               const label = document.createElement("label");
               //Add class to the newly created labels
               label.classList.add('character-words');
-              if(i==randomIndex){
-                     const t = document.createTextNode(originalWord[i]);
-                     label.appendChild(t);
-              labelDiv.appendChild(label);
+       
+              let textForTag ="";
+              if(originalWord[i] == randomCharacter){
+                     textLabelTag = document.createTextNode(originalWord[i]);
+                     clue[i] = originalWord[i];
+                     
               }else{
-                     const t = document.createTextNode(" _ ");
-                     label.appendChild(t);
-              labelDiv.appendChild(label);
+                     textLabelTag = document.createTextNode("_");
               }
+              label.appendChild(textLabelTag);
+              labelDiv.appendChild(label);
               
        }
-    //   wordLabel.innerHTML = `${clue}`;
+       //Select the labels here because only after creation of label this will return array.
+       wordLabel = document.querySelectorAll('.character-words');
 }
 
 //Function to display letters on label when the button is clicked
 const displayLetters=(event)=>{
     const alphabetClicked = event.target.innerHTML;
-
+    //Disable the buttons once it is clicked 
+    event.target.disabled = true;
+    
+    console.log(`Clue is  : ${clue}`);
     //Find all the indexes of the character which is clicked
     const indexes = getAllIndexes(originalWord,alphabetClicked);
-       console.log(indexes);       
-    //Add characters to the correct position in the clueWord if the clicked character is present
-       indexes.forEach(element => {
-              console.log(`Clue before insertion ${clue}`);
-              clue[element] = alphabetClicked;
-              console.log(`Clue after insertion ${clue}`); 
-       });
-       wordLabel.innerHTML = `${clue}`;
+
+    //Iterate through all the labels 
+       indexes.forEach(index => {
+              clue[index] = alphabetClicked;
+              wordLabel[index].innerHTML = alphabetClicked;
+              });
+       
 }
 
 //Function to find all the index of a character in the word
