@@ -28,8 +28,8 @@ const displayLetters=(event)=>{
     const alphabetClicked = event.target.innerHTML;
     console.log(alphabetClicked);
     //Check whether the originalWord contains the clicked alphabet
-    if(originalWord.search(alphabetClicked)){
-       wordLabel.innerHTML += alphabet;
+    if(originalWord.includes(alphabetClicked)){
+       wordLabel.innerHTML += alphabetClicked;
     }
 }
 
