@@ -26,7 +26,15 @@ const clue=[];
 const displayClueWord = ()=>{
        //Generate a random character to display for the clueWord
        const randomCharacter = originalWord.charAt(Math.floor(Math.random() * originalWord.length));
-
+       
+       //Disable the randomCharacter button which will be default clue 
+       abcButtons.forEach(element => {
+             // console.log(element.innerHTML);
+              if(element.innerHTML === randomCharacter){
+                     element.disabled =true;
+                     console.log(element);
+              }
+       });
        //Dynamically create labels for each characters in the clue word
        for (let i = 0; i < originalWord.length; i++) {
               const label = document.createElement("label");
@@ -55,16 +63,14 @@ const displayLetters=(event)=>{
     //Disable the buttons once it is clicked 
     event.target.disabled = true;
     
-    console.log(`Clue is  : ${clue}`);
     //Find all the indexes of the character which is clicked
     const indexes = getAllIndexes(originalWord,alphabetClicked);
 
-    //Iterate through all the labels 
+    //Iterate through all the labels at set the clicked value 
        indexes.forEach(index => {
               clue[index] = alphabetClicked;
               wordLabel[index].innerHTML = alphabetClicked;
               });
-       
 }
 
 //Function to find all the index of a character in the word
