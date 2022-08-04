@@ -1,0 +1,18 @@
+.flexcontainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexcontainer-playarea {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+}
+
+header {
+  text-align: center;
+}
+
+#character-words {
+  text-decoration: underline;
+}
