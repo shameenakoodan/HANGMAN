@@ -67,10 +67,17 @@ const displayLetters=(event)=>{
     const indexes = getAllIndexes(originalWord,alphabetClicked);
 
     //Iterate through all the labels at set the clicked value 
-       indexes.forEach(index => {
-              clue[index] = alphabetClicked;
-              wordLabel[index].innerHTML = alphabetClicked;
+    indexes.forEach(index => {
+       clue[index] = alphabetClicked;
+       wordLabel[index].innerHTML = alphabetClicked;
+       });
+
+       //If the correct word is displayed disable all the buttons 
+       if(clue.length == originalWord.length){
+              abcButtons.forEach(element => {
+                     element.disabled = true;
               });
+       }
 }
 
 //Function to find all the index of a character in the word
