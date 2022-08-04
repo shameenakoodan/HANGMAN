@@ -21,3 +21,7 @@ header {
 .character-words {
   text-decoration: underline;
 }
+
+.abc-buttons {
+  font-family: "Mouse Memoirs", sans-serif;
+}
