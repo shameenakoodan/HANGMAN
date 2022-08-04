@@ -27,13 +27,24 @@ const displayClueWord = ()=>{
 const displayLetters=(event)=>{
     const alphabetClicked = event.target.innerHTML;
     console.log(alphabetClicked);
+
+    //Find index of the character which is clicked
+    
     //Check whether the originalWord contains the clicked alphabet
     if(originalWord.includes(alphabetClicked)){
        wordLabel.innerHTML += alphabetClicked;
     }
 }
 
-
+//Function to find all the index of a character in the word
+//Returns an array of all the indexes where the character is present
+const getAllIndexes = (originalWord, clicked) =>{
+       let indexes = [], i = -1;
+       while ((i = arr.indexOf(val, i+1)) != -1){
+           indexes.push(i);
+       }
+       return indexes;
+}
 /****************************************************************
                      Event Listeners
 *****************************************************************/
