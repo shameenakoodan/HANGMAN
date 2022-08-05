@@ -15,7 +15,7 @@ const labelDiv = document.querySelector(".flexcontainer-playarea-word");
 //Store the words
 const fruits = ["strawberries", "raspberries", "blueberries", "kiwifruit","passionfruit","nectarines", "apricots", "peaches","plums",];
 //Select random words from the array
-const originalWord = fruits[Math.floor(Math.random() * fruits.length)];
+let originalWord = fruits[Math.floor(Math.random() * fruits.length)];
 const clue=[];
 
 //Set a counter for the maximum number of attempts
@@ -26,6 +26,7 @@ let maximumAttempt = 7;
 
 //Function to display a word with only hints and underscores on the label
 const displayClueWord = ()=>{
+       maximumAttempt = 7;
        //Generate a random character to display for the clueWord
        const randomCharacter = originalWord.charAt(Math.floor(Math.random() * originalWord.length));
        
@@ -37,6 +38,7 @@ const displayClueWord = ()=>{
                      console.log(element);
               }
        });
+
        //Dynamically create labels for each characters in the clue word
        for (let i = 0; i < originalWord.length; i++) {
               const label = document.createElement("label");
@@ -80,6 +82,8 @@ const displayLetters=(event)=>{
     //Check if the maximum attempt is 0 if so prompt Failed
     if(maximumAttempt == 0){
        alert("Failed");
+       //Reset maximum attempts so that the game starts again
+       refreshContents();
     }else{
         //Iterate through all the labels and set the clicked value 
        indexes.forEach(index => {
@@ -90,16 +94,11 @@ const displayLetters=(event)=>{
        //Display a congrations alert box
        //Display the next clue
        if(clue.join('').trim() === originalWord.trim()){
-              abcButtons.forEach(element => {
-                     element.disabled = true;
-              });
-              deletePreviousLabels();
-              displayClueWord();
-              abcButtons.forEach(element => {
-                     element.disabled = false;
-              });
+              refreshContents();
+              //Reset maximum attempts so that the game starts again
+              alert("Congratulations");
        }
-    }    
+    }   
 }
 
 //Function to find all the index of a character in the word
@@ -111,9 +110,26 @@ const getAllIndexes = (word, clicked) =>{
        }
        return indexes;
 }
+
+//Function to refresh the contents
+const refreshContents  = ()=>{
+       originalWord = fruits[Math.floor(Math.random() * fruits.length)];
+       console.log(`${maximumAttempt}`);
+       maximumAttempt = 7;
+       abcButtons.forEach(element => {
+              element.disabled = true;
+       });
+       deletePreviousLabels();
+       displayClueWord();
+       abcButtons.forEach(element => {
+              element.disabled = false;
+       });
+}
+
 /****************************************************************
                      Event Listeners
 *****************************************************************/
+
 //Add event listener for Alphabet Buttons
 abcButtons.forEach(element=>{
        element.addEventListener("click",displayLetters);
