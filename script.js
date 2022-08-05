@@ -70,6 +70,7 @@ const deletePreviousLabels = ()=>{
 
 //Function to display letters on label when the button is clicked
 const displayLetters=(event)=>{
+       console.log(`Added Key code : ${event.keyCode}`);
     const alphabetClicked = event.target.innerHTML;
     //Disable the buttons once it is clicked 
     event.target.disabled = true;
@@ -133,7 +134,22 @@ const refreshContents  = ()=>{
 //Add event listener for Alphabet Buttons
 abcButtons.forEach(element=>{
        element.addEventListener("click",displayLetters);
-})
+});
 
+//Add keypress event listener for Alphabet Buttons
+abcButtons.forEach(element=>{
+       element.addEventListener("keydown",displayLetters);
+});
 //Add event listener when a page is loaded
 window.onload = displayClueWord;
+
+
+/*//Sound Effects
+const audio = new Audio("./sounds/mixkit-positive-interface-beep-221.wav");
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(button => {
+  button.addEventListener("click", () => {
+    audio.play();
+  });
+});*/

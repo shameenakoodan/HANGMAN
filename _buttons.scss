@@ -1,3 +1,11 @@
+@use 'vars';
+button{
+    border: 4px solid black;
+    background-color: white;
+}
 .abc-buttons{
-    font-family: 'Mouse Memoirs', sans-serif;
+    font-family: vars.$font-abc-buttons;
+    font-size: 3rem;
+    width: 3rem;
+    height: 4rem;   
 }

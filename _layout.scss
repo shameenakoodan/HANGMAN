@@ -5,9 +5,12 @@
 .flexcontainer-playarea{
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
     height: 30rem;
 }
 .flexcontainer-playarea-buttons{
     padding-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
 }
