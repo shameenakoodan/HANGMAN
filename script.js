@@ -14,10 +14,12 @@ const labelDiv = document.querySelector(".flexcontainer-playarea-word");
 *****************************************************************/
 //Store the words
 const fruits = ["strawberries", "raspberries", "blueberries", "kiwifruit","passionfruit","nectarines", "apricots", "peaches","plums",];
-//Word display
+//Select random words from the array
 const originalWord = fruits[Math.floor(Math.random() * fruits.length)];
 const clue=[];
 
+//Set a counter for the maximum number of attempts
+let maximumAttempt = 7;
 /****************************************************************
                      Function Definitions
 *****************************************************************/
@@ -72,29 +74,32 @@ const displayLetters=(event)=>{
     
     //Find all the indexes of the character which is clicked
     const indexes = getAllIndexes(originalWord,alphabetClicked);
-
-    //Iterate through all the labels at set the clicked value 
-    indexes.forEach(index => {
+    //Decrement the maxAttempt for every wrong click
+    if(indexes.length ==0)
+       maximumAttempt--;
+    //Check if the maximum attempt is 0 if so prompt Failed
+    if(maximumAttempt == 0){
+       alert("Failed");
+    }else{
+        //Iterate through all the labels and set the clicked value 
+       indexes.forEach(index => {
        clue[index] = alphabetClicked;
        wordLabel[index].innerHTML = alphabetClicked;
        });
-
        //If the correct word is displayed disable all the buttons 
        //Display a congrations alert box
        //Display the next clue
-       console.log(`Clue  : ${clue.join('')} and originalWord is ${originalWord}`);
        if(clue.join('').trim() === originalWord.trim()){
               abcButtons.forEach(element => {
                      element.disabled = true;
               });
-
-              alert("Congratulations!!!");
               deletePreviousLabels();
               displayClueWord();
               abcButtons.forEach(element => {
                      element.disabled = false;
               });
        }
+    }    
 }
 
 //Function to find all the index of a character in the word
