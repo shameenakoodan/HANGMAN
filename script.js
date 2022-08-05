@@ -57,6 +57,13 @@ const displayClueWord = ()=>{
        wordLabel = document.querySelectorAll('.character-words');
 }
 
+//Function to delete the previous labels
+const deletePreviousLabels = ()=>{
+       wordLabel.forEach(element => {
+              element.remove();
+       });
+}
+
 //Function to display letters on label when the button is clicked
 const displayLetters=(event)=>{
     const alphabetClicked = event.target.innerHTML;
@@ -73,9 +80,19 @@ const displayLetters=(event)=>{
        });
 
        //If the correct word is displayed disable all the buttons 
-       if(clue.length == originalWord.length){
+       //Display a congrations alert box
+       //Display the next clue
+       console.log(`Clue  : ${clue.join('')} and originalWord is ${originalWord}`);
+       if(clue.join('').trim() === originalWord.trim()){
               abcButtons.forEach(element => {
                      element.disabled = true;
+              });
+
+              alert("Congratulations!!!");
+              deletePreviousLabels();
+              displayClueWord();
+              abcButtons.forEach(element => {
+                     element.disabled = false;
               });
        }
 }
