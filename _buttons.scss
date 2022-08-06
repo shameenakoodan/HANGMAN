@@ -20,4 +20,9 @@ button{
 }
 .theme-buttons{
     border: none;
+    font-family: vars.$font-abc-buttons;
+    font-size: 3rem;
+    width: 12rem;
+    height: 6rem;   
+    text-align: center;
 }

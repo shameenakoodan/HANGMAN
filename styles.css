@@ -60,3 +60,12 @@ button {
   height: 10rem;
   border: none;
 }
+
+.theme-buttons {
+  border: none;
+  font-family: "Mouse Memoirs", sans-serif;
+  font-size: 3rem;
+  width: 12rem;
+  height: 6rem;
+  text-align: center;
+}
