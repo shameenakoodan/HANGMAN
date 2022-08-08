@@ -1,18 +1,31 @@
 @use 'vars';
+body{
+    padding: 0px;
+    margin: 0px;
+}
 main{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
 }
 header{
-    text-align: center;
-    font-family: vars.$font-abc-buttons;
-    font-size: 2rem;
+    background: #006F37;
+    font-family: "Mouse Memoirs", sans-serif;
+    font-size: 3rem;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: wheat;
 }
-img{
-    width: 1rem;
-    height: 1rem;
+img {
+    width: 19rem;
+    height: 19rem;
+}
+button i{
+    background: #006F37;
 }
 .character-words{
     text-decoration: none;
@@ -20,4 +33,10 @@ img{
     font-size: 3rem;
     width: 3rem;
     height: 4rem; 
+    color: ghostwhite;
+}
+h2{
+    color: #B14009;
+    background: vars.$background-green;
+    text-align: center;
 }

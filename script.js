@@ -26,7 +26,6 @@ const mainTag = document.querySelector('main');
 //Random character to display rndom character
 let randomCharacter = '';
 
-
 /****************************************************************
                      Variable Declarations
 *****************************************************************/
@@ -179,18 +178,33 @@ const displayGame = () => {
 }
 
 const selectATheme = () => {
+       //Remove unwanted things from the first page
+       const frontpageflexcontainer  = document.querySelector(".front-page-flex-container");
+       frontpageflexcontainer.remove();
        playButton.remove();
+       
        //Generate an array of themes
        const themes = ["Countries", "Fruits", "Vegetables", "Languages"];
        divTheme = document.createElement("div");
        divTheme.classList.add('main-theme-container');
+       
+       //Generate a h2 for select a theme
+       const selecth2 = document.createElement("h2");
+       selecth2.innerHTML = "Select a Theme";
+       divTheme.appendChild(selecth2);
+
+       //Div for the themebuttonsContainer
+       const themebuttonsContainer = document.createElement("div");
+       themebuttonsContainer.classList.add('themeButtonsContainer');
+       divTheme.appendChild(themebuttonsContainer);
+
        themes.forEach(element => {
               buttons = document.createElement("button");
               //Add class to the newly created labels
               buttons.classList.add('theme-buttons');
               const textButtonTag = document.createTextNode(element);
               buttons.appendChild(textButtonTag);
-              divTheme.appendChild(buttons);
+              themebuttonsContainer.appendChild(buttons);
        });
        mainTag.appendChild(divTheme);
        themeButtons = document.querySelectorAll(".theme-buttons");

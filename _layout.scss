@@ -1,12 +1,15 @@
+@use 'vars';
 .flexcontainer{
     display: flex;
     flex-direction: row;
+    background: vars.$background-green;;
 }
 .flexcontainer-playarea{
     display: flex;
     flex-direction: column;
     height: 30rem;
     gap: 2rem;
+    align-items: center;
 }
 .flexcontainer-playarea-buttons{
     padding-top: 10px;
@@ -15,4 +18,20 @@
     gap: 1rem;
     align-items: center;
     justify-content: center;
+}
+.main-theme-container{
+    background: vars.$background-green;
+}
+.logo-image{
+    background-color:vars.$background-green;
+}
+.front-page-flex-container{
+    display: flex;
+    flex-direction: column;
+    background: vars.$background-green;
+    align-items: center;
+}
+.themeButtonsContainer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
