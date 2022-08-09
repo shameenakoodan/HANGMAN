@@ -2,13 +2,17 @@
 html, body {
     margin: 0;
     height: 100%;
+    overflow: hidden; //Prevents the scroll bar 
 }
 .flexcontainer{
     display: flex;
     flex-direction: row;
     background: vars.$background-green;;
-//background: repeating-linear-gradient( -45deg, vars.$background-green 0px, #000 5px, #333 6px, #333 11px, #000 12px);
 
+}
+.flexcontainer-hangman img{
+    width: 35rem;
+    height: 35rem;
 }
 .flexcontainer-playarea{
     display: flex;
@@ -41,4 +45,5 @@ html, body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap:1rem;
+    justify-items: center;
 }

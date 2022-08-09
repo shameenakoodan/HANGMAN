@@ -1,12 +1,18 @@
 html, body {
   margin: 0;
   height: 100%;
+  overflow: hidden;
 }
 
 .flexcontainer {
   display: flex;
   flex-direction: row;
   background: #006F37;
+}
+
+.flexcontainer-hangman img {
+  width: 35rem;
+  height: 35rem;
 }
 
 .flexcontainer-playarea {
@@ -45,6 +51,7 @@ html, body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  justify-items: center;
 }
 
 body {
@@ -142,8 +149,8 @@ header h2 {
   font-size: 3rem;
   width: 11rem;
   height: 6rem;
-  text-align: center;
   color: wheat;
+  justify-items: center;
 }
 
 .theme-buttons:hover {
@@ -164,4 +171,28 @@ header button {
 
 .fa-solid:hover {
   color: red;
+}
+
+@media screen and (min-width: 764px) {
+  .flexcontainer-playarea {
+    max-width: 42rem;
+  }
+
+  header h2 {
+    text-align: center;
+    font-size: 6rem;
+  }
+}
+@media screen and (max-width: 764px) {
+  .flexcontainer-hangman {
+    display: none;
+    width: 10rem;
+    flex: 1 1 0;
+    width: 0;
+  }
+
+  .flexcontainer-hangman img {
+    width: 10rem;
+    height: 10rem;
+  }
 }

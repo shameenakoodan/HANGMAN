@@ -277,6 +277,10 @@ const createDivs = () =>{
        const flexcontainerhangman = document.createElement("div");
        flexcontainerhangman.classList.add("flexcontainer-hangman");
        flexcontainerdiv.appendChild(flexcontainerhangman);
+       //Add hangman image
+       const logoImage  = document.createElement("img");
+       logoImage.src = "./images/512x512bb.png";
+       flexcontainerhangman.appendChild(logoImage);
 
        const flexcontainerplayarea = document.createElement("div");
        flexcontainerplayarea.classList.add("flexcontainer-playarea");
