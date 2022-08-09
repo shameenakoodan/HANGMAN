@@ -1,8 +1,14 @@
 @use 'vars';
+html, body {
+    margin: 0;
+    height: 100%;
+}
 .flexcontainer{
     display: flex;
     flex-direction: row;
     background: vars.$background-green;;
+//background: repeating-linear-gradient( -45deg, vars.$background-green 0px, #000 5px, #333 6px, #333 11px, #000 12px);
+
 }
 .flexcontainer-playarea{
     display: flex;
@@ -34,4 +40,5 @@
 .themeButtonsContainer{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap:1rem;
 }

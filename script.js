@@ -26,6 +26,18 @@ const mainTag = document.querySelector('main');
 //Random character to display rndom character
 let randomCharacter = '';
 
+//Hangman h1
+const hangmanh1 = document.querySelector("#hangmanheader");
+
+//Header tag
+const header = document.querySelector("header");
+
+//For the audio play
+const buttonclickSound = new Audio("./audio/buttonclick.wav");
+const wrong = new Audio("./audio/wrong.wav");
+const win = new Audio("./Audio/win.wav");
+
+const buttonAll = document.querySelectorAll("button");
 /****************************************************************
                      Variable Declarations
 *****************************************************************/
@@ -113,14 +125,20 @@ const displayLetters = (event) => {
        //Find all the indexes of the character which is clicked
        const indexes = getAllIndexes(originalWord, alphabetClicked);
        //Decrement the maxAttempt for every wrong click
-       if (indexes.length == 0)
+       if (indexes.length == 0){
+              wrong.play();
               maximumAttempt--;
+       }
+              
        //Check if the maximum attempt is 0 if so prompt Failed
        if (maximumAttempt == 0) {
-              alert("Failed");
+              wrong.play();
+              setTimeout(function(){ alert("Try Again!!!!"); }, 1000);
+              setTimeout(function(){  refreshContents(); }, 1000);
               //Reset maximum attempts so that the game starts again
-              refreshContents();
+             
        } else {
+              buttonclickSound.play();
               //Iterate through all the labels and set the clicked value 
               indexes.forEach(index => {
                      clue[index] = alphabetClicked;
@@ -132,6 +150,7 @@ const displayLetters = (event) => {
               console.log(`Original Word :${originalWord} and clue  : ${clue}`);
               if (clue.join('').trim() === originalWord.trim()) {
                      //Reset maximum attempts so that the game starts again
+                     win.play();
                      setTimeout(function(){ alert("Congratulations"); }, 1000);
                      setTimeout(function(){  refreshContents(); }, 1000);
 
@@ -172,9 +191,7 @@ const refreshContents = () => {
        });
 }
 const displayGame = () => {
-
        selectATheme();
-       //location.href = "pickatheme.html";
 }
 
 const selectATheme = () => {
@@ -182,16 +199,31 @@ const selectATheme = () => {
        const frontpageflexcontainer  = document.querySelector(".front-page-flex-container");
        frontpageflexcontainer.remove();
        playButton.remove();
+       hangmanh1.remove();
+
+       //Display back Button
+       const backButton = document.createElement("button");
+       backButton.classList.add("backButton");
+       backButton.innerHTML = '<i class="fa-solid fa-circle-arrow-left fa-4x" style="color: #f3da35"></i>';
+       header.appendChild(backButton);
+       
+       //Add actionlistener for back button
+       backButton.addEventListener("click",function(){
+              location.href = "index.html"
+       });
+
+       //Generate a h2 for select a theme
+       const selecth2 = document.createElement("h2");
+       selecth2.innerHTML = "Select a Theme";
+       header.appendChild(selecth2);
+       
        
        //Generate an array of themes
        const themes = ["Countries", "Fruits", "Vegetables", "Languages"];
        divTheme = document.createElement("div");
        divTheme.classList.add('main-theme-container');
        
-       //Generate a h2 for select a theme
-       const selecth2 = document.createElement("h2");
-       selecth2.innerHTML = "Select a Theme";
-       divTheme.appendChild(selecth2);
+       
 
        //Div for the themebuttonsContainer
        const themebuttonsContainer = document.createElement("div");
@@ -209,9 +241,16 @@ const selectATheme = () => {
        mainTag.appendChild(divTheme);
        themeButtons = document.querySelectorAll(".theme-buttons");
        //Add event listener for selecting the theme
+       themeButtons.forEach(button => {
+              button.addEventListener("click", () => {
+                buttonclickSound.play();
+              });
+            });
+            
        themeButtons.forEach(element => {
               element.addEventListener("click", themeSelection);
        });
+       
 }
 //Create the divs for the last page
 /*
@@ -264,6 +303,18 @@ const playArea = () => {
        generateAlphabetButtons();
        //Remove the div for the theme from the current page
        divTheme.remove();
+       //Remove the select a theme from this page and add HangMan
+       const headerH2 = document.querySelector("header h2");
+       headerH2.remove();
+
+       //Add HangMan Logo
+       /*const logoImage  = document.createElement("img");
+       logoImage.src = "./images/512x512bb.png";
+       header.appendChild(logoImage);*/
+       const selectThemeHeader = document.createElement("h3");
+       selectThemeHeader.innerHTML = `Find the ${selectedTheme}`;
+       header.appendChild(selectThemeHeader);
+       
 }
 //Function to generate Alphabet buttons
 const generateAlphabetButtons = () => {
@@ -305,17 +356,17 @@ let buttonContainer = document.querySelector(".flexcontainer-playarea-buttons");
 //window.onload = displayClueWord;
 
 //Add event listener for play button
-//if(document.body.contains(playButton))
+//playButton.addEventListener("click",audio.play());
 playButton.addEventListener("click", displayGame);
 
 
 
 
-/*//Sound Effects
-const audio = new Audio("./audio/mixkit-positive-interface-beep-221.wav");
 
-abcButtons.forEach(button => {
+//Sound Effects
+
+buttonAll.forEach(button => {
   button.addEventListener("click", () => {
-    audio.play();
+    buttonclickSound.play();
   });
-});*/
+});

@@ -1,8 +1,4 @@
 @use 'vars';
-button{
-    border: 4px solid black;
-    background-color: white;
-}
 .abc-buttons{
     font-family: vars.$font-abc-buttons;
     font-size: 2rem;
@@ -12,9 +8,17 @@ button{
     border-radius: 20px;
     border: 2px solid orange;
     background: yellow;
+    
+}
+.abc-buttons:disabled{
+    
+    pointer-events: none;
 }
 .abc-buttons:active{
     color: black;
+}
+.abc-buttons:hover{
+    background:orange;
 }
 #play{
     width: 10rem;
@@ -23,14 +27,27 @@ button{
     background: vars.$background-green;
 }
 .theme-buttons{
-    border: none;
+    border: 2px solid #f3da35;
+    border-radius: 10px;
     font-family: vars.$font-abc-buttons;
     font-size: 3rem;
-    width: 12rem;
-    height: 6rem;   
+    width: 11rem;
+    height: 6rem;  
     text-align: center;
     color: wheat;
 }
+.theme-buttons:hover{
+    background: #B14009;
+}
 .main-theme-container button{
     background: vars.$background-green;
+}
+.backButton{
+    background: vars.$background-green;
+}
+header button{
+    border: none;
+}
+.fa-solid:hover {
+    color: red;
 }
