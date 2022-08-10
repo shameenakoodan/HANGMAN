@@ -86,7 +86,7 @@ const displayClueWord = () => {
                      originalWord = languages[Math.floor(Math.random() * fruits.length)].toLowerCase();
                      break;
        }
-       console.log(`Original Word : ${originalWord}`);
+
        maximumAttempt = 7;
        //Generate a random character to display for the clueWord
        randomCharacter = originalWord.charAt(Math.floor(Math.random() * originalWord.length));
@@ -134,7 +134,6 @@ const displayLetters = (event) => {
              //Retrieve stars and delete them
              const stars = document.querySelectorAll(".stars") ;
               stars[0].remove();
-             //console.log(stars[0]+"wqwe");
               wrong.play();
               maximumAttempt--;
        }
@@ -155,13 +154,11 @@ const displayLetters = (event) => {
               //If the correct word is displayed disable all the buttons 
               //Display a congratulations alert box
               //Display the next clue
-              console.log(`Original Word :${originalWord} and clue  : ${clue}`);
               if (clue.join('').trim() === originalWord.replace(/\s/g, '').trim()) {
                      //Reset maximum attempts so that the game starts again
                      win.play();
                      score++;
                      scoreLabel.innerHTML = `Score : ${score}`;
-                     console.log(`Score : ${score}`);
                      setTimeout(function(){ alert("Congratulations"); }, 1000);
                      setTimeout(function(){  refreshContents(); }, 1000);
               }
@@ -189,7 +186,6 @@ const getAllIndexes = (word, clicked) => {
 const refreshContents = () => {
        originalWord = fruits[Math.floor(Math.random() * fruits.length)];
        clue = [];
-       console.log(`${maximumAttempt}`);
        maximumAttempt = 7;
        abcButtons.forEach(element => {
               element.disabled = true;
@@ -353,10 +349,8 @@ const generateAlphabetButtons = () => {
        abcButtons = document.querySelectorAll('.abc-buttons');
        //Disable the randomCharacter button which will be default clue 
        abcButtons.forEach(element => {
-              // console.log(element.innerHTML);
               if (element.innerHTML === randomCharacter) {
                      element.disabled = true;
-                     console.log(element);
               }
        });
 
