@@ -14,6 +14,6 @@ After you've revealed several letters, you may be able to guess what the answer 
 
 If you are not able to guess after 7 wrong attempts it displays a new word.
 
-You have an 4 option to choose the puzzle set
+You have 4 options to choose the puzzle set
 
 
