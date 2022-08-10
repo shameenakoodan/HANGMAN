@@ -23,8 +23,7 @@ let divTheme ;
 //Main tag
 const mainTag = document.querySelector('main');
 
-//Random character to display rndom character
-let randomCharacter = '';
+
 
 //Hangman h1
 const hangmanh1 = document.querySelector("#hangmanheader");
@@ -32,21 +31,15 @@ const hangmanh1 = document.querySelector("#hangmanheader");
 //Header tag
 const header = document.querySelector("header");
 
-//For the audio play
-const buttonclickSound = new Audio("./audio/buttonclick.wav");
-const wrong = new Audio("./audio/wrong.wav");
-const win = new Audio("./Audio/win.wav");
-
 //Select all buttons
 const buttonAll = document.querySelectorAll("button");
 
-//Score Label
-let scoreLabel;
+
 /****************************************************************
                      Variable Declarations
 *****************************************************************/
 //Store the words
-const fruits = [ "Acai","Apple","Apricot","Lychee","Mango","Mangosteen","Cantaloupe","Honeydew"];
+const fruits = [ "Acai","Apple","Apricot","Lychee","Mango","Mangosteen","Cantaloupe","Honeydew","Pears","Oranges","Grapefruit","mandarin","lime","Nectarines"];
 const countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica", "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre and Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts and Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan", "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "Uruguay", "Uzbekistan", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
 const languages = ["English","Spanish","Chinese","Tagalog","Vietnamese","Arabic","French","Korean","German","Hindi","Portugese","Italian","Polish","Yeddish","Japanase","Persian","Gujarati","Telugu","Bengali","Urdu","Greek","Punjabi","Tamil","Armenian","Hebrew","Indonesian","Navajo"];
 const vegetables = ["Zucchini","Watercress","Turnip","Tomato","Tomatillo","Spinach","Squash","Shallots","Salsify","Radishes","Rutabaga","Radicchio","Pumpkin","Potato","Pepper","Pepper","Parsnip","Onions","Okra","Mushrooms","Lettuce","Leeks","Kale","Horseradish","Fiddleheads","Fennel","Eggplant","Endives","Edamame","Daikon","Cucumber","Crookneck","Corn","Collards","Chayote","Celery","Celeriac","Cauliflower","Cassava","Carrot","Cabbage","Broccoli","Broadbeans","Beets","Asparagus","Arugula","Artichoke","Arrowroot"];
@@ -59,9 +52,17 @@ let clue = [];
 let selectedTheme = '';
 //Set a counter for the maximum number of attempts
 let maximumAttempt = 7;
-
 //Store the score
 let score=0;
+//Random character to display rndom character
+let randomCharacter = '';
+//Score Label
+let scoreLabel;
+//For the audio play
+const buttonclickSound = new Audio("./audio/buttonclick.wav");
+const wrong = new Audio("./audio/wrong.wav");
+const win = new Audio("./Audio/win.wav");
+
 /****************************************************************
                      Function Definitions
 *****************************************************************/
@@ -130,6 +131,10 @@ const displayLetters = (event) => {
        const indexes = getAllIndexes(originalWord, alphabetClicked);
        //Decrement the maxAttempt for every wrong click
        if (indexes.length == 0){
+             //Retrieve stars and delete them
+             const stars = document.querySelectorAll(".stars") ;
+              stars[0].remove();
+             //console.log(stars[0]+"wqwe");
               wrong.play();
               maximumAttempt--;
        }
@@ -140,7 +145,6 @@ const displayLetters = (event) => {
               setTimeout(function(){ alert("Try Again!!!!"); }, 1000);
               setTimeout(function(){  refreshContents(); }, 1000);
               //Reset maximum attempts so that the game starts again
-             
        } else {
               buttonclickSound.play();
               //Iterate through all the labels and set the clicked value 
@@ -160,7 +164,6 @@ const displayLetters = (event) => {
                      console.log(`Score : ${score}`);
                      setTimeout(function(){ alert("Congratulations"); }, 1000);
                      setTimeout(function(){  refreshContents(); }, 1000);
-
               }
        }
 }
@@ -361,6 +364,18 @@ const generateAlphabetButtons = () => {
        abcButtons.forEach(element => {
               element.addEventListener("click", displayLetters);
        });
+       const starDiv = document.createElement("div");
+       for (let i = 0; i < 7; i++) {
+              const labelStar = document.createElement("label");
+              labelStar.innerHTML = '<i class="fa-solid fa-star fa-4x"></i>';
+              labelStar.classList.add("stars");
+              //Add class to the newly created labels
+              starDiv.appendChild(labelStar);
+       }
+       const flexcontainerplayarea = document.querySelector(".flexcontainer-playarea");
+
+       flexcontainerplayarea.appendChild(starDiv);
+       
 }
 
 /****************************************************************

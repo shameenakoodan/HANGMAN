@@ -1,0 +1,21 @@
+@media screen and (min-width:764px) {
+    .flexcontainer-playarea{
+        max-width: 42rem;
+    }
+    header h2{
+        text-align: center;
+        font-size: 6rem;
+    }
+ }
+ @media screen and (max-width:764px) {
+    .flexcontainer-hangman{
+      display: none;
+      width:10rem;
+        flex: 1 1 0;
+        width: 0;
+    }
+    .flexcontainer-hangman img{
+        width: 10rem;
+        height: 10rem;
+    }
+ }

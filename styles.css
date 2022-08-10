@@ -54,6 +54,10 @@ html, body {
   justify-items: center;
 }
 
+.fa-solid {
+  color: coral;
+}
+
 body {
   padding: 0px;
   margin: 0px;
@@ -72,7 +76,7 @@ header {
   font-family: "Mouse Memoirs", sans-serif;
   font-size: 3rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   color: wheat;
 }
