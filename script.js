@@ -112,6 +112,20 @@ const displayClueWord = () => {
        }
        //Select the labels here because only after creation of label this will return array.
        wordLabel = document.querySelectorAll('.character-words');
+
+       //Create the stars
+       const starDiv = document.createElement("div");
+       starDiv.classList.add("starClass");
+       for (let i = 0; i < 7; i++) {
+              const labelStar = document.createElement("label");
+              labelStar.innerHTML = '<i class="fa-solid fa-star fa-1x"></i>';
+              labelStar.classList.add("stars");
+              //Add class to the newly created labels
+              starDiv.appendChild(labelStar);
+       }
+       const flexcontainerplayarea = document.querySelector(".flexcontainer-playarea");
+
+       flexcontainerplayarea.appendChild(starDiv);
 }
 
 //Function to delete the previous labels
@@ -141,8 +155,8 @@ const displayLetters = (event) => {
        //Check if the maximum attempt is 0 if so prompt Failed
        if (maximumAttempt == 0) {
               wrong.play();
-              setTimeout(function(){ alert("Try Again!!!!"); }, 1000);
-              setTimeout(function(){  refreshContents(); }, 1000);
+              setTimeout(function(){ alert("Try Again!!!!"); }, 900);
+              setTimeout(function(){  refreshContents(); }, 900);
               //Reset maximum attempts so that the game starts again
        } else {
               buttonclickSound.play();
@@ -358,17 +372,7 @@ const generateAlphabetButtons = () => {
        abcButtons.forEach(element => {
               element.addEventListener("click", displayLetters);
        });
-       const starDiv = document.createElement("div");
-       for (let i = 0; i < 7; i++) {
-              const labelStar = document.createElement("label");
-              labelStar.innerHTML = '<i class="fa-solid fa-star fa-4x"></i>';
-              labelStar.classList.add("stars");
-              //Add class to the newly created labels
-              starDiv.appendChild(labelStar);
-       }
-       const flexcontainerplayarea = document.querySelector(".flexcontainer-playarea");
-
-       flexcontainerplayarea.appendChild(starDiv);
+       
        
 }
 
