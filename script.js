@@ -37,7 +37,11 @@ const buttonclickSound = new Audio("./audio/buttonclick.wav");
 const wrong = new Audio("./audio/wrong.wav");
 const win = new Audio("./Audio/win.wav");
 
+//Select all buttons
 const buttonAll = document.querySelectorAll("button");
+
+//Score Label
+let scoreLabel;
 /****************************************************************
                      Variable Declarations
 *****************************************************************/
@@ -56,7 +60,8 @@ let selectedTheme = '';
 //Set a counter for the maximum number of attempts
 let maximumAttempt = 7;
 
-
+//Store the score
+let score=0;
 /****************************************************************
                      Function Definitions
 *****************************************************************/
@@ -144,12 +149,15 @@ const displayLetters = (event) => {
                      wordLabel[index].innerHTML = alphabetClicked;
               });
               //If the correct word is displayed disable all the buttons 
-              //Display a congrations alert box
+              //Display a congratulations alert box
               //Display the next clue
               console.log(`Original Word :${originalWord} and clue  : ${clue}`);
               if (clue.join('').trim() === originalWord.replace(/\s/g, '').trim()) {
                      //Reset maximum attempts so that the game starts again
                      win.play();
+                     score++;
+                     scoreLabel.innerHTML = `Score : ${score}`;
+                     console.log(`Score : ${score}`);
                      setTimeout(function(){ alert("Congratulations"); }, 1000);
                      setTimeout(function(){  refreshContents(); }, 1000);
 
@@ -314,9 +322,15 @@ const playArea = () => {
        /*const logoImage  = document.createElement("img");
        logoImage.src = "./images/512x512bb.png";
        header.appendChild(logoImage);*/
+
+       //Select the back button and return to the theme selection page
        const selectThemeHeader = document.createElement("h3");
        selectThemeHeader.innerHTML = `Find the ${selectedTheme}`;
        header.appendChild(selectThemeHeader);
+
+       scoreLabel = document.createElement("p");
+       scoreLabel.innerHTML = `Score : ${score}`;
+       header.appendChild(scoreLabel);
        
 }
 //Function to generate Alphabet buttons
@@ -324,8 +338,8 @@ const generateAlphabetButtons = () => {
        const alpha = Array.from(Array(26)).map((e, i) => i + 97);
        const alphabet = alpha.map((x) => String.fromCharCode(x));
        
-//Div for alphabet buttons
-let buttonContainer = document.querySelector(".flexcontainer-playarea-buttons");
+       //Div for alphabet buttons
+       let buttonContainer = document.querySelector(".flexcontainer-playarea-buttons");
        //For each alphabet generate a button
        alphabet.forEach(element => {
               buttons = document.createElement("button");
