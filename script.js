@@ -198,6 +198,11 @@ const getAllIndexes = (word, clicked) => {
 
 //Function to refresh the contents
 const refreshContents = () => {
+       //Remove any stars if present
+       const divStars = document.querySelector(".starClass");
+       console.log(divStars);
+       divStars.remove();
+       
        originalWord = fruits[Math.floor(Math.random() * fruits.length)];
        clue = [];
        maximumAttempt = 7;
