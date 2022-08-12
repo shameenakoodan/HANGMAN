@@ -58,6 +58,12 @@ html, body {
   color: coral;
 }
 
+.starClass {
+  font-family: "Mouse Memoirs", sans-serif;
+  font-size: 3rem;
+  color: wheat;
+}
+
 body {
   padding: 0px;
   margin: 0px;

@@ -115,10 +115,11 @@ const displayClueWord = () => {
 
        //Create the stars
        const starDiv = document.createElement("div");
+       starDiv.innerHTML = "Lives : ";
        starDiv.classList.add("starClass");
        for (let i = 0; i < 7; i++) {
               const labelStar = document.createElement("label");
-              labelStar.innerHTML = '<i class="fa-solid fa-star fa-1x"></i>';
+              labelStar.innerHTML = '<i class="fa-solid fa-star"></i>';
               labelStar.classList.add("stars");
               //Add class to the newly created labels
               starDiv.appendChild(labelStar);
@@ -128,12 +129,16 @@ const displayClueWord = () => {
        flexcontainerplayarea.appendChild(starDiv);
 }
 
+
+
 //Function to delete the previous labels
 const deletePreviousLabels = () => {
        wordLabel.forEach(element => {
               element.remove();
        });
 }
+
+
 
 //Function to display letters on label when the button is clicked
 const displayLetters = (event) => {
@@ -179,12 +184,16 @@ const displayLetters = (event) => {
        }
 }
 
+
+
 //Function to be called when a theme is selected
 const themeSelection = (event) => {
        selectedTheme = event.target.innerHTML;
        //Display the next play page
        playArea();
 }
+
+
 
 //Function to find all the index of a character in the word
 //Returns an array of all the indexes where the character is present
@@ -195,6 +204,8 @@ const getAllIndexes = (word, clicked) => {
        }
        return indexes;
 }
+
+
 
 //Function to refresh the contents
 const refreshContents = () => {
@@ -215,6 +226,8 @@ const refreshContents = () => {
               element.disabled = false;
        });
 }
+
+//Displays the contents to select a theme
 const displayGame = () => {
        selectATheme();
 }
@@ -295,6 +308,8 @@ const selectATheme = () => {
                 
             </div>
 */
+
+
 const createDivs = () =>{
        flexcontainerdiv = document.createElement('div');
        flexcontainerdiv.classList.add("flexcontainer");
@@ -320,26 +335,27 @@ const createDivs = () =>{
        flexcontainerplayareabuttons.classList.add("flexcontainer-playarea-buttons");
        flexcontainerplayarea.appendChild(flexcontainerplayareabuttons);
 }
+
+
 //Display the play Area
 const playArea = () => {
        //Generate the div for the clue word
        createDivs();
+
        //Display the Clue word
        displayClueWord();
+
        //Generate the div for the buttons and parent divs
 
        //Generate the alphabet buttons
        generateAlphabetButtons();
+
        //Remove the div for the theme from the current page
        divTheme.remove();
+
        //Remove the select a theme from this page and add HangMan
        const headerH2 = document.querySelector("header h2");
        headerH2.remove();
-
-       //Add HangMan Logo
-       /*const logoImage  = document.createElement("img");
-       logoImage.src = "./images/512x512bb.png";
-       header.appendChild(logoImage);*/
 
        //Select the back button and return to the theme selection page
        const selectThemeHeader = document.createElement("h3");
@@ -377,29 +393,15 @@ const generateAlphabetButtons = () => {
        abcButtons.forEach(element => {
               element.addEventListener("click", displayLetters);
        });
-       
-       
 }
 
 /****************************************************************
                      Event Listeners
 *****************************************************************/
 
-
-
-//Add event listener when a page is loaded
-//window.onload = displayClueWord;
-
-//Add event listener for play button
-//playButton.addEventListener("click",audio.play());
 playButton.addEventListener("click", displayGame);
 
-
-
-
-
 //Sound Effects
-
 buttonAll.forEach(button => {
   button.addEventListener("click", () => {
     buttonclickSound.play();
